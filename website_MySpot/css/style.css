@@ -25,7 +25,7 @@ main {
   background-color: transparent;
 }
 .tabs .tab a {
-  color: #1a237e !important;
+  color: #1a237e ;
 }
 .tabs .indicator {
     background-color: #1a237e;

@@ -2,7 +2,8 @@ angular.module('homeController',[])
 
 .controller('homeController', function($scope, $http, md5, requestService){
   $(document).ready(function(){
-    $('ul.tabs').tabs({'swipeable': true});
+    $('ul.tabs').tabs();
+    $('.tooltipped').tooltip({delay: 50});
   });
   $scope.user = {
     email:"testeteste@email",
