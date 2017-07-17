@@ -1,0 +1,32 @@
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.logo{
+  height: 57px;
+  width: auto;
+  margin: 3px 0px 0px 16px;
+}
+
+.quarto-card{
+  padding: 1px;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #7986cb!important;
+  background-color: transparent;
+}
+.tabs .tab a {
+  color: #1a237e !important;
+}
+.tabs .indicator {
+    background-color: #1a237e;
+}
