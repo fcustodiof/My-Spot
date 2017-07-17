@@ -7,8 +7,9 @@ var form = require('formidable');
 // var userRequests = require('./modules/userRequests.js');
 
 var app = express();
+//cria o ws e define q ele ira escutar na porta 4000
 app.use(bodyParser.json()).listen(4000);
-
+//conexao com banco
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -53,5 +54,5 @@ app.post('/insertUser', function(requisition, response) {
     }else {
       response.sendStatus(204);
     }
-    });
+  });
 });
