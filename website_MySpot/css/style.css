@@ -9,7 +9,9 @@ body {
 main {
   flex: 1 0 auto;
 }
-
+.head-quarto-margin-comp{
+  margin-top: 10px;
+}
 .logo{
   height: 57px;
   width: auto;
