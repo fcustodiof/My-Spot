@@ -4,7 +4,18 @@ angular.module('homeController',[])
   $(document).ready(function(){
     $('ul.tabs').tabs();
     $('.tooltipped').tooltip({delay: 50});
+    $('.modal').modal();
   });
+  $scope.novoHospedeForm;
+  $scope.selectCama = '';
+  $scope.camas = [{ cama: 'Cama 1' }, { cama: 'Cama 2' }, { cama: 'Cama 3' }, { cama: 'Cama 4' }]
+  $scope.novoHospede = true;
+  $scope.formNovoHospede = function(){
+    $scope.novoHospede = true;
+  };
+  $scope.hospedeReserva = function(){
+    $scope.novoHospede =  false;
+  };
   $scope.user = {
     email:"testeteste@email",
     password:"teste",
@@ -29,4 +40,31 @@ angular.module('homeController',[])
         }
     );
   };
+  var currentTime = new Date();
+  $scope.currentTime = currentTime;
+  $scope.month = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+  $scope.monthShort = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+  $scope.weekdaysFull = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+  $scope.weekdaysLetter = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+  $scope.today = 'Hoje';
+  $scope.clear = 'Limpar';
+  $scope.close = 'Ok';
+  // $scope.onStart = function () {
+  //     console.log('onStart');
+  // };
+  // $scope.onRender = function () {
+  //     console.log('onRender');
+  // };
+  // $scope.onOpen = function () {
+  //     console.log('onOpen');
+  // };
+  // $scope.onClose = function () {
+  //     console.log('onClose');
+  // };
+  // $scope.onSet = function () {
+  //     console.log('onSet');
+  // };
+  // $scope.onStop = function () {
+  //     console.log('onStop');
+  // };
 })

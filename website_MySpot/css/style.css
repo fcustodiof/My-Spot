@@ -9,6 +9,17 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+[type="checkbox"]:checked + label:before {
+    border-right: 2px solid #304ffe;
+    border-bottom: 2px solid #304ffe;
+}
+.collection a.collection-item {
+    color: #304ffe;
+}
+.collection .collection-item.active {
+  background-color: #304ffe;
+}
 .head-quarto-margin-comp{
   margin-top: 10px;
 }

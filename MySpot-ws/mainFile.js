@@ -14,7 +14,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "dblaslenhas"
+  database: ""
 });
 
 // con.connect(function(err) {
@@ -55,4 +55,5 @@ app.post('/insertUser', function(requisition, response) {
       response.sendStatus(204);
     }
   });
+
 });

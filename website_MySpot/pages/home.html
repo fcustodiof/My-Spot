@@ -206,8 +206,104 @@
 <!-- Modal Structure -->
 <div id="vincularPessoaQuarto" class="modal">
   <div class="modal-content">
-      <h4>Registrar vaga do cliente</h4>
-      <a class="btn">Novo Hospede</a>
-      <a class="btn">Hospede com reserva</a>
+    <h4 class="indigo-text text-accent-4">Registrar vaga do cliente</h4>
+    <a class="btn indigo accent-4" ng-click="formNovoHospede()">Novo Hospede</a>
+    <a class="btn indigo accent-4" ng-click="hospedeReserva()">Hospede com reserva</a>
+    <div class="row" ng-if="novoHospede" style="margin-top:5%">
+      <form name="novoHospedeForm">
+        <div input-field class="col s6">
+          <select class="" id="selecioneAcama" ng-model="selectCama" material-select watch>
+            <option value="" disabled selected>Selecione a cama</option>
+            <option ng-repeat="cama in camas">{{cama.cama}}</option>
+          </select>
+          <label for="selecioneAcama">Selecione a cama</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Nome" id="nome" type="text" class="validate" required>
+          <label for="nome">Nome completo</label>
+        </div>
+        <div class="col s6">
+          <label for="inputCreated">Data de nascimento</label>
+          <input input-date type="text" name="created" id="inputCreated" ng-model="currentTime"
+              container=""
+              format="dd/mm/yyyy"
+              months-full="{{ month }}"
+              months-short="{{ monthShort }}"
+              weekdays-full="{{ weekdaysFull }}"
+              weekdays-short="{{ weekdaysShort }}"
+              weekdays-letter="{{ weekdaysLetter }}"
+              today="today"
+              first-day="1"
+              clear="clear"
+              close="close"
+              select-years="100"
+              on-start="onStart()"
+              on-render="onRender()"
+              on-open="onOpen()"
+              on-close="onClose()"
+              on-set="onSet()"
+              on-stop="onStop()" />
+        </div>
+        <div class="col s6">
+          <p>Sexo</p>
+          <p>
+            <input name="group1" type="radio" id="masculino" />
+            <label for="masculino">Masculino</label>
+          </p>
+          <p>
+            <input name="group1" type="radio" id="feminino" />
+            <label for="feminino">Feminino</label>
+          </p>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="CPF" id="cpf" type="number" class="validate" required>
+          <label for="cpf">CPF</label>
+        </div>
+        <div class="input-field col s6 ">
+          <input placeholder="CPF" id="RG" type="number" class="validate" required>
+          <label for="RG">RG</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Telefone" id="telefone" type="text" class="validate" required>
+          <label for="telefone">Telefone</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Endereço" id="endereco" type="text" class="validate" required>
+          <label for="endereco">Endereço</label>
+        </div>
+      </form>
+    </div>
+    <div ng-if="!novoHospede">
+      <h5 class="indigo-text text-accent-4">Reserva</h5>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input id="icon_prefix" type="text" class="validate">
+        <label for="icon_prefix">Procurar</label>
+      </div>
+      <div class="collection">
+        <a class="collection-item">Krug</a>
+        <a class="collection-item active">Alvin</a>
+        <a class="collection-item">Vander</a>
+        <a class="collection-item">Auberto</a>
+      </div>
+      <h5 class="indigo-text text-accent-4">Selecione os hospedes</h5>
+      <form>
+        <p class="">
+          <input class="" type="checkbox" id="jo" checked="checked" />
+          <label class="" for="jo">João</label>
+        </p>
+        <p>
+          <input type="checkbox" id="ka" checked="checked" />
+          <label for="ka">Karla</label>
+        </p>
+        <p>
+          <input type="checkbox" id="ma" checked="checked" />
+          <label for="ma">Maria</label>
+        </p>
+      </form>
+    </div>
   </div>
-<div class="modal-footer">
+  <div class="modal-footer">
+    <a class="btn btn indigo accent-4">Salvar</a>
+  </div>
+</div>
