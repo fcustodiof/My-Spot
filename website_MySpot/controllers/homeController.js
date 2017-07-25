@@ -7,6 +7,7 @@ angular.module('homeController',[])
     $('.modal').modal();
     Materialize.updateTextFields();
   });
+  $scope.data = new Date();
   $scope.novoHospedeForm;
   $scope.selectCama = '';
   $scope.camas = [{ cama: 'Cama 1' }, { cama: 'Cama 2' }, { cama: 'Cama 3' }, { cama: 'Cama 4' }]
