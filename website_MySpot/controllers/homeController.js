@@ -5,6 +5,7 @@ angular.module('homeController',[])
     $('ul.tabs').tabs();
     $('.tooltipped').tooltip({delay: 50});
     $('.modal').modal();
+    Materialize.updateTextFields();
   });
   $scope.novoHospedeForm;
   $scope.selectCama = '';
