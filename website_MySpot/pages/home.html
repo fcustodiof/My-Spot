@@ -36,7 +36,7 @@
           <div class="row" style="margin-top:8px">
             <div class="col s6">
               <div class="left">
-                <a class="waves-effect waves-light btn indigo accent-4">
+                <a class="waves-effect waves-light btn indigo accent-4" data-target='modalCheckIn' modal>
                   Check-in
                   <i class="material-icons left">keyboard_arrow_right</i>
                 </a>
@@ -45,7 +45,7 @@
             </div>
             <div class="col s6">
               <div class="right">
-                <a class="waves-effect waves-light btn indigo accent-4">
+                <a class="waves-effect waves-light btn indigo accent-4" data-target='modalCheckOut' modal>
                   <i class="material-icons left">keyboard_arrow_left</i>
                   Check-out
                 </a>
@@ -203,7 +203,9 @@
     </div>
   </div>
 </div>
+
 <!-- Modal Structure -->
+
 <div id="vincularPessoaQuarto" class="modal">
   <div class="modal-content">
     <h4 class="indigo-text text-accent-4">Registrar vaga do cliente</h4>
@@ -219,7 +221,7 @@
           <label for="selecioneAcama">Selecione a cama</label>
         </div>
         <div class="input-field col s6">
-          <input placeholder="Nome" id="nome" type="text" class="validate" required>
+          <input id="nome" type="text" class="validate" required>
           <label for="nome">Nome completo</label>
         </div>
         <div class="col s6">
@@ -256,19 +258,19 @@
           </p>
         </div>
         <div class="input-field col s6">
-          <input placeholder="CPF" id="cpf" type="number" class="validate" required>
+          <input id="cpf" type="number" class="validate" required>
           <label for="cpf">CPF</label>
         </div>
         <div class="input-field col s6 ">
-          <input placeholder="CPF" id="RG" type="number" class="validate" required>
+          <input id="RG" type="number" class="validate" required>
           <label for="RG">RG</label>
         </div>
         <div class="input-field col s6">
-          <input placeholder="Telefone" id="telefone" type="text" class="validate" required>
+          <input id="telefone" type="number" class="validate" required>
           <label for="telefone">Telefone</label>
         </div>
         <div class="input-field col s6">
-          <input placeholder="Endereço" id="endereco" type="text" class="validate" required>
+          <input id="endereco" type="text" class="validate" required>
           <label for="endereco">Endereço</label>
         </div>
       </form>
@@ -289,15 +291,15 @@
       <h5 class="indigo-text text-accent-4">Selecione os hospedes</h5>
       <form>
         <p class="">
-          <input class="" type="checkbox" id="jo" checked="checked" />
+          <input class="" type="checkbox" id="jo"/>
           <label class="" for="jo">João</label>
         </p>
         <p>
-          <input type="checkbox" id="ka" checked="checked" />
+          <input type="checkbox" id="ka"/>
           <label for="ka">Karla</label>
         </p>
         <p>
-          <input type="checkbox" id="ma" checked="checked" />
+          <input type="checkbox" id="ma"/>
           <label for="ma">Maria</label>
         </p>
       </form>
@@ -305,5 +307,61 @@
   </div>
   <div class="modal-footer">
     <a class="btn btn indigo accent-4">Salvar</a>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+
+<div id="modalCheckIn" class="modal">
+  <div class="modal-content">
+    <h4 class="indigo-text text-accent-4">Check-in</h4>
+    <h5>Data: {{data}}</h5>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Observações</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn indigo accent-4">Realizar check-in</a>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+
+<div id="modalCheckOut" class="modal">
+  <div class="modal-content">
+    <h4 class="indigo-text text-accent-4">Check-out</h4>
+    <h5>Data: {{data}}</h5>
+    <div class="input-field col s12">
+      <textarea id="textarea2" class="materialize-textarea"></textarea>
+      <label for="textarea2">Observações</label>
+    </div>
+    <table class="bordered striped centered responsive-table">
+      <thead>
+        <tr>
+          <th>Consumo</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Coca-cola</td>
+          <td>R$3,50</td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td>R$3,50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn indigo accent-4">Finalizar</a>
   </div>
 </div>
