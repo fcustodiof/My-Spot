@@ -1,0 +1,46 @@
+--DEV Julio
+-- Cria tabela de quartos
+CREATE TABLE `ghlavras_myspot`.`new_table` (
+  `idQuarto` INT NOT NULL AUTO_INCREMENT,
+  `tipoQuarto` VARCHAR(1) NOT NULL,
+  `sexoQuarto` VARCHAR(1) NOT NULL,
+  `valorQuarto` DOUBLE NOT NULL,
+  PRIMARY KEY (`idQuarto`));
+
+
+--DEV Julio
+-- Cria tabela de camas
+CREATE TABLE `ghlavras_myspot`.`cama` (
+  `idCama` INT NOT NULL AUTO_INCREMENT,
+  `idQuarto` INT NOT NULL,
+  `situacaoCama` VARCHAR(1) NOT NULL,
+  PRIMARY KEY (`idCama`),
+  INDEX `fk_cama_idx` (`idQuarto` ASC),
+  CONSTRAINT `fk_cama`
+    FOREIGN KEY (`idQuarto`)
+    REFERENCES `ghlavras_myspot`.`quarto` (`idQuarto`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+
+--DEV de testes de uso. Julio
+insert into quarto (tipoQuarto, sexoQuarto, valorQuarto) values ('M','M',200);
+select * from quarto;
+delete from quarto where id!=1;
+
+
+
+insert into cama (idQuarto, situacaoCama) values (4,'O');
+select * from cama;
+
+select * from cama natural join quarto;
+select idCama from cama natural join quarto where idQuarto=2;
+
+-- Mostra total de camas em cada quarto
+create view totalcamasporquarto as select idQuarto, count(*)as 'Camas' from quarto natural join cama group by quarto.idQuarto;
+
+-- Mostra quantidade de camas disponíveis em cada quarto
+create view camasdisponiveisporquarto as select idQuarto, count(*)as 'Camas' from quarto natural join cama where cama.situacaoCama like 'D' group by quarto.idQuarto;
+
+-- Mostra total de camas disponíveis no hostel
+create view totalcamasdisponiveis as select sum(Camas) from camasdisponiveisporquarto;
