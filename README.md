@@ -4,7 +4,7 @@ Informatizar o gerenciamento de hostel.
 web service : nodejs
 site : angular 1, materialize
 
-para execução do site instalar o http-server
+para execução do site instalar o http-server(obs é necessario o nodejs pra baixar e executar o http-server acho)
 
 
 OBSERVAÇÕES: 
