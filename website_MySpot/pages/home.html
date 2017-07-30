@@ -4,10 +4,7 @@
       <i class="large material-icons">mode_edit</i>
     </a>
     <ul>
-      <li><a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons">attach_file</i></a></li>
+      <li><a class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Cadastrar novo quarto" data-target='novoQuarto' modal><i class="material-icons">add</i></a></li>
     </ul>
   </div>
   <div class="row" style="margin-top:5%">
@@ -16,11 +13,11 @@
         <div class="row center-align" style="padding:5px">
           <div class="col s4">
             <a style="margin-top: 7px;" data-target='vincularPessoaQuarto' modal class="left indigo accent-4 waves-effect waves-light btn">
-              <i class="material-icons">person_add</i>
+              <i class="material-icons">edit</i>
             </a>
           </div>
           <div class="col s4">
-            <h5>Quarto 1 Misto</h5>
+            <h5>Quarto 1 (Albergue Misto)</h5>
           </div>
           <div class="col s4">
             <strong style="margin-top: 20px;" class="right head-quarto-margin-comp">Vagas: 2</strong>
@@ -33,7 +30,7 @@
           <li class="tab col s3 disabled"><a href="#test4">Cama 4</a></li>
         </ul>
         <div id="test1" class="col s12 card">
-          <div class="row" style="margin-top:8px">
+          <!-- <div class="row" style="margin-top:8px">
             <div class="col s6">
               <div class="left">
                 <a class="waves-effect waves-light btn indigo accent-4" data-target='modalCheckIn' modal>
@@ -52,7 +49,7 @@
                 <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col s2">
               <img src="./images/felipe.jpg" alt="" class="circle responsive-img">
@@ -67,7 +64,7 @@
           </div>
         </div>
         <div id="test2" class="col s12 card">
-          <div class="row" style="margin-top:8px">
+          <!-- <div class="row" style="margin-top:8px">
             <div class="col s6">
               <div class="left">
                 <a class="waves-effect waves-light btn indigo accent-4">
@@ -87,7 +84,7 @@
                 <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col s2">
               <img src="./images/MargaeryTyrell.jpg" alt="" class="circle responsive-img">
@@ -110,11 +107,11 @@
         <div class="row center-align" style="padding:5px">
           <div class="col s4">
             <a style="margin-top: 7px;" class="left indigo accent-4 waves-effect waves-light btn">
-              <i class="material-icons">person_add</i>
+              <i class="material-icons">edit</i>
             </a>
           </div>
           <div class="col s4">
-            <h5>Quarto 1 Fem</h5>
+            <h5>Quarto 2 (Albergue Feminino)</h5>
           </div>
           <div class="col s4">
             <strong style="margin-top: 20px;" class="right head-quarto-margin-comp">Vagas: 2</strong>
@@ -127,7 +124,7 @@
           <li class="tab col s3 disabled"><a href="#test8">Cama 4</a></li>
         </ul>
         <div id="test5" class="col s12 card">
-          <div class="row" style="margin-top:8px">
+          <!-- <div class="row" style="margin-top:8px">
             <div class="col s6">
               <div class="left">
                 <a class="waves-effect waves-light btn indigo accent-4">
@@ -146,7 +143,7 @@
                 <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <!-- <div class="col s2">
               <img src="./images/sansa-stark.jpg" alt="" class="circle responsive-img">
@@ -162,10 +159,10 @@
           </div>
         </div>
         <div id="test6" class="col s12 card">
-          <div class="row" style="margin-top:8px">
+          <!-- <div class="row" style="margin-top:8px">
             <div class="col s6">
               <div class="left">
-                <a class="waves-effect waves-light btn indigo accent-4">
+                <a class="<waves></waves>-effect waves-light btn indigo accent-4">
                   <i class="material-icons left">keyboard_arrow_right
                   </i>
                   Check-in
@@ -182,7 +179,7 @@
                 <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <!-- <div class="col s2">
               <img src="./images/arya-stark.jpg" alt="" class="circle responsive-img">
@@ -201,6 +198,100 @@
         <div id="test8" class="col s12 card">Cama 4</div>
       </div>
     </div>
+
+    <div class="col s12 m6 l6">
+      <div class="quarto-card card">
+        <div class="row center-align" style="padding:5px">
+          <div class="col s4">
+            <a style="margin-top: 7px;" class="left indigo accent-4 waves-effect waves-light btn">
+              <i class="material-icons">edit</i>
+            </a>
+          </div>
+          <div class="col s4">
+            <h5>Quarto 3 (Privativo)</h5>
+          </div>
+          <!-- <div class="col s4">
+            <strong style="margin-top: 20px;" class="right head-quarto-margin-comp">Vagas: 2</strong>
+          </div> -->
+        </div>
+        <ul class="tabs">
+          <li class="tab col s6"><a  class="active" href="#test9">Hóspede 1</a></li>
+          <li class="tab col s6"><a href="#test10">Hóspede 2</a></li>
+        </ul>
+        <div id="test9" class="col s12 card">
+          <!-- <div class="row" style="margin-top:8px">
+            <div class="col s6">
+              <div class="left">
+                <a class="waves-effect waves-light btn indigo accent-4">
+                  Check-in
+                  <i class="material-icons left">keyboard_arrow_right</i>
+                </a>
+                <h6 style="margin-left:10px">Check-in: 00/00/0000</h6>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="right">
+                <a class="waves-effect waves-light btn indigo accent-4">
+                  <i class="material-icons left">keyboard_arrow_left</i>
+                  Check-out
+                </a>
+                <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <!-- <div class="col s2">
+              <img src="./images/sansa-stark.jpg" alt="" class="circle responsive-img">
+            </div> -->
+            <div class="col s12">
+              <p class="flow-text" style="margin-top:0px">
+                Nome: Sansa Stark
+              <br>Sexo: Feminino
+              <br>Idade: 25 anos
+              <br>CPF: 000.000.000-00
+              <br>RG: XX-00000000</p>
+            </div>
+          </div>
+        </div>
+        <div id="test10" class="col s12 card">
+          <!-- <div class="row" style="margin-top:8px">
+            <div class="col s6">
+              <div class="left">
+                <a class="<waves></waves>-effect waves-light btn indigo accent-4">
+                  <i class="material-icons left">keyboard_arrow_right
+                  </i>
+                  Check-in
+                </a>
+                <h6 style="margin-left:10px">Check-in: 00/00/0000</h6>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="right">
+                <a class="waves-effect waves-light btn indigo accent-4">
+                  <i class="material-icons left">keyboard_arrow_left</i>
+                  Check-out
+                </a>
+                <h6 style="margin-right:10px">Check-out: 00/00/0000</h6>
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <!-- <div class="col s2">
+              <img src="./images/arya-stark.jpg" alt="" class="circle responsive-img">
+            </div> -->
+            <div class="col s12">
+              <p class="flow-text" style="margin-top:0px">
+                Nome: Arya Stark
+              <br>Sexo: Feminino
+              <br>Idade: 15 anos
+              <br>CPF: 000.000.000-00
+              <br>RG: XX-00000000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -363,5 +454,29 @@
   </div>
   <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn indigo accent-4">Finalizar</a>
+  </div>
+</div>
+
+<div id="novoQuarto" class="modal">
+  <div class="modal-content">
+    <h4 class="indigo-text text-accent-4">Novo quarto</h4>
+    <div class="row" ng-if="novoHospede" style="margin-top:5%">
+      <form name="novoHospedeForm">
+        <div input-field class="col s6">
+          <select class="" id="selecioneAcama" ng-model="selectCama" material-select watch>
+            <option value="" disabled selected>Selecione tipo do quarto</option>
+            <option ng-repeat="quarto in tipoQuartos">{{quarto.tipo}}</option>
+          </select>
+          <label for="selecioneAcama">Selecione tipo do quarto</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="nome" type="text" class="validate" required>
+          <label for="nome">Nome completo</label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn indigo accent-4">Salvar</a>
   </div>
 </div>
