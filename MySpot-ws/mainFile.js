@@ -1,9 +1,9 @@
 var mysql = require('mysql');
-var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
-var request = require("request");
-var form = require('formidable');
+// var http = require('http');
+// var request = require("request");
+// var form = require('formidable');
 // var userRequests = require('./modules/userRequests.js');
 
 var app = express();
