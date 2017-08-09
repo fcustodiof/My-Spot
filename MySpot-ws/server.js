@@ -34,7 +34,9 @@ router.route('/quartos')
         });
     })
     .get(function (req, res) {
-        var query = session.query(quarto).select();
+        var query = session.query(quarto).where(
+            quarto.desativado.Equal('FALSE')
+        );
         query.then(function(result){
             res.status(200).json(result);
         }).catch(function(error){
@@ -58,22 +60,36 @@ router.route('/quartos/:idQuarto')
         });
     })
     .put(function (req, res) {
-        var newQuarto = {
-            idQuarto: req.params.idQuarto,
-            tipoQuarto: req.body.tipoQuarto,
-            sexoQuarto: req.body.sexoQuarto,
-            valorQuarto: req.body.valorQuarto,
-            vagaTotal: req.body.vagaTotal
-        }
-
-        quarto.Insert(newQuarto).then(function (result) {
-            res.status(200).json({ message: 'Quarto criado!' });
-        }).catch(function (error) {
+        var sql = 'UPDATE quarto SET tipoQuarto = \''+req.body.tipoQuarto+
+        '\', sexoQuarto = \''+req.body.sexoQuarto+
+        '\', valorQuarto = '+req.body.valorQuarto+
+        ', vagaTotal = '+req.body.vagaTotal+
+        ' WHERE idQuarto = '+req.params.idQuarto;
+        console.log(sql);
+        var query = session.executeSql(sql);
+        
+        query.then(function(result) {
+            res.status(200).json({ message: 'Quarto atualizado!' });
+        }).catch(function(error) {
             res.status(400).send(error);
         });
+
+        // var newQuarto = {
+        //     idQuarto: req.params.idQuarto,
+        //     tipoQuarto: req.body.tipoQuarto,
+        //     sexoQuarto: req.body.sexoQuarto,
+        //     valorQuarto: req.body.valorQuarto,
+        //     vagaTotal: req.body.vagaTotal
+        // }
+
+        // quarto.Insert(newQuarto).then(function (result) {
+        //     res.status(200).json({ message: 'Quarto criado!' });
+        // }).catch(function (error) {
+        //     res.status(400).send(error);
+        // });
     })
     .delete(function(req, res) {
-       var sql = 'delete from quarto where idQuarto = '+req.params.idQuarto;
+       var sql = 'UPDATE quarto SET desativado = TRUE WHERE idQuarto = '+req.params.idQuarto;
         var query = session.executeSql(sql);
             
         query.then(function(result) {
