@@ -10,7 +10,8 @@ app.listen(port, function () {
    console.log("Servidor rodando na porta " +port);
 });
 
-var quarto = require('./mapeamentoOR/quarto');
+const quarto = require('./mapeamentoOR/quarto');
+const hospede = require('./mapeamentoOR/hospede');
 
 var router = express.Router();
 
@@ -97,6 +98,40 @@ router.route('/quartos/:idQuarto')
         query.then(function(result) {
             res.status(200).json({ message: 'Quarto excluído!' });
         }).catch(function(error) {
+            res.status(400).send(error);
+        });
+    });
+
+router.route('/hospedes')
+    .post(function (req, res) {
+        
+        let novoHospede = {
+            cpf: req.body.cpf,
+            rg: req.body.rg,
+            nome: req.body.nome,
+            email: req.body.email,
+            telefone: req.body.telefone
+        }
+
+        hospede.Insert(novoHospede).then(function (result) {
+            res.status(200).json({ message: 'Hospede cadastrado!' });
+        }).catch(function (error) {
+
+            if (error.sqlState === "23000"){
+                res.status(400).send("CPF já cadastrado!");
+
+            } else {
+                res.status(400).send(error);
+            }
+        });
+    })
+    .get(function (req, res) {
+
+        let query = 'select * from hospede';
+
+        session.executeSql(query).then(function(result){
+            res.status(200).json(result);
+        }).catch(function(error){
             res.status(400).send(error);
         });
     });
