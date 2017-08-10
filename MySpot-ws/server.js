@@ -6,7 +6,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8000;
-app.listen(port);
+app.listen(port, function () {
+   console.log("Servidor rodando na porta " +port);
+});
 
 var quarto = require('./mapeamentoOR/quarto');
 
