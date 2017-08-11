@@ -42,43 +42,68 @@ CREATE TABLE ghlavras_myspot.hospede (
 
   # Criando tabela de reservas para quartos privados
   # O estado da reserva é modificado pra TRUE quando o hospede fizer check-in
-  CREATE TABLE ghlavras_myspot.reservaPrivativa(
-    idReservaPrivativa INT NOT NULL AUTO_INCREMENT,
-    idHospede INT NOT NULL,
-    idQuarto INT NOT NULL,
-    estadoReserva BOOLEAN DEFAULT FALSE,
-    dataEntrada DATE NOT NULL,
-    dataSaida DATE NOT NULL,
-    qntPessoas INT NOT NULL,
-    PRIMARY KEY (idReservaPrivativa),
-    CONSTRAINT fk_reservaPrivativa_idHospede
-      FOREIGN KEY (idHospede)
-      REFERENCES ghlavras_myspot.hospede (idHospede)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE,
-    CONSTRAINT fk_reservaPrivativa_idQuarto
-      FOREIGN KEY (idQuarto)
-      REFERENCES ghlavras_myspot.quarto (idQuarto)
-      ON DELETE CASCADE
-      ON UPDATE CASCADE);
+  #CREATE TABLE ghlavras_myspot.reservaPrivativa(
+  #  idReservaPrivativa INT NOT NULL AUTO_INCREMENT,
+  #  idHospede INT NOT NULL,
+  #  idQuarto INT NOT NULL,
+  #  estadoReserva BOOLEAN DEFAULT FALSE,
+  #  dataEntrada DATE NOT NULL,
+  #  dataSaida DATE NOT NULL,
+  #  qntPessoas INT NOT NULL,
+  #  PRIMARY KEY (idReservaPrivativa),
+  #  CONSTRAINT fk_reservaPrivativa_idHospede
+  #    FOREIGN KEY (idHospede)
+  #    REFERENCES ghlavras_myspot.hospede (idHospede)
+  #    ON DELETE CASCADE
+  #    ON UPDATE CASCADE,
+  #  CONSTRAINT fk_reservaPrivativa_idQuarto
+  #    FOREIGN KEY (idQuarto)
+  #    REFERENCES ghlavras_myspot.quarto (idQuarto)
+  #    ON DELETE CASCADE
+  #    ON UPDATE CASCADE);
 
   # Criando tabela de reservas para camas em quartos compartilhados
   # O estado da reserva é modificado pra TRUE quando o hospede fizer check-in
-  CREATE TABLE ghlavras_myspot.reservaCompartilhada(
-    idReservaCompartilhada INT NOT NULL AUTO_INCREMENT,
+  #CREATE TABLE ghlavras_myspot.reservaCompartilhada(
+  #  idReservaCompartilhada INT NOT NULL AUTO_INCREMENT,
+  #  idHospede INT NOT NULL,
+  #  idQuarto INT NOT NULL,
+  #  estadoReserva BOOLEAN DEFAULT FALSE,
+  #  dataEntrada DATE NOT NULL,
+  #  dataSaida DATE NOT NULL,
+  #  qntCamas INT NOT NULL,
+  #  PRIMARY KEY (idReservaCompartilhada),
+  #  CONSTRAINT fk_reservaCompartilhada_hospede
+  #    FOREIGN KEY (idHospede)
+  #    REFERENCES ghlavras_myspot.hospede (idHospede)
+  #    ON DELETE CASCADE
+  #    ON UPDATE CASCADE,
+  #  CONSTRAINT fk_reservaCompartilhada_quarto
+  #    FOREIGN KEY (idQuarto)
+  #    REFERENCES ghlavras_myspot.quarto (idQuarto)
+  #    ON DELETE CASCADE
+  #    ON UPDATE CASCADE);
+
+  # Criando tabela de reservas.
+  # A quantidade representa quantidade de camas caso a reserva seja privativa
+  # ou quantidade de pessoas caso a reserva seja compartilhada.
+  # O estado da reserva é modificado pra TRUE quando o hospede fizer check-in.
+  CREATE TABLE ghlavras_myspot.reserva(
+    idReserva INT NOT NULL AUTO_INCREMENT,
     idHospede INT NOT NULL,
     idQuarto INT NOT NULL,
     estadoReserva BOOLEAN DEFAULT FALSE,
     dataEntrada DATE NOT NULL,
     dataSaida DATE NOT NULL,
-    qntCamas INT NOT NULL,
-    PRIMARY KEY (idReservaCompartilhada),
-    CONSTRAINT fk_reservaCompartilhada_hospede
+    privativa BOOLEAN DEFAULT FALSE,
+    quantidade INT NOT NULL,
+    PRIMARY KEY (idReserva),
+    CONSTRAINT fk_reserva_hospede
       FOREIGN KEY (idHospede)
       REFERENCES ghlavras_myspot.hospede (idHospede)
       ON DELETE CASCADE
       ON UPDATE CASCADE,
-    CONSTRAINT fk_reservaCompartilhada_quarto
+    CONSTRAINT fk_reserva_quarto
       FOREIGN KEY (idQuarto)
       REFERENCES ghlavras_myspot.quarto (idQuarto)
       ON DELETE CASCADE
@@ -96,14 +121,18 @@ insert into cama (idQuarto, situacaoCama) values (3,'O');
 insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('2008-05-30', '551615', '441kofok', 'Breno', 'brn753@gmail.com', 5641251);
 insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('2005-05-30', '66666', '44451kofok', 'Breno', 'brn753@gmail.com', 5641251);
 
-insert into reservacompartilhada (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, qntCamas) values (1, 1, FALSE, '2017-11-30', '2017-12-10', 3);
+insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-30', '2017-12-10', 0, 2);
 
-insert into reservaprivativa (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, qntPessoas) values (1, 1, FALSE, '2017-11-30', '2017-12-10', 4);
+
+#insert into reservacompartilhada (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, qntCamas) values (1, 1, FALSE, '2017-11-30', '2017-12-10', 3);
+
+#insert into reservaprivativa (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, qntPessoas) values (1, 1, FALSE, '2017-11-30', '2017-12-10', 4);
 
 # --- !Downs
 DROP TABLE ghlavras_myspot.cama;
-DROP TABLE ghlavras_myspot.reservaPrivativa;
-DROP TABLE ghlavras_myspot.reservaCompartilhada;
+DROP TABLE ghlavras_myspot.reserva;
+#DROP TABLE ghlavras_myspot.reservaPrivativa;
+#DROP TABLE ghlavras_myspot.reservaCompartilhada;
 DROP TABLE ghlavras_myspot.quarto;
 DROP TABLE ghlavras_myspot.hospede;
 

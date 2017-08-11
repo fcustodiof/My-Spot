@@ -2,6 +2,8 @@ var express = require('express');
 var session = require('./infrastructure/session');
 var app = express();
 var bodyParser = require('body-parser');
+var _ = require('underscore');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -12,6 +14,7 @@ app.listen(port, function () {
 
 const quarto = require('./mapeamentoOR/quarto');
 const hospede = require('./mapeamentoOR/hospede');
+const reserva = require('./mapeamentoOR/reserva');
 
 var router = express.Router();
 
@@ -106,6 +109,7 @@ router.route('/hospedes')
     .post(function (req, res) {
         
         let novoHospede = {
+            dataNascimento: req.body.dataNascimento,
             cpf: req.body.cpf,
             rg: req.body.rg,
             nome: req.body.nome,
@@ -128,6 +132,54 @@ router.route('/hospedes')
     .get(function (req, res) {
 
         let query = 'select * from hospede';
+
+        session.executeSql(query).then(function(result){
+            res.status(200).json(result);
+        }).catch(function(error){
+            res.status(400).send(error);
+        });
+    });
+
+router.route('/reservas')
+    // .get(function (req, res) {
+
+    //     let promises = [];
+
+    //     let queryCompartilhada = 'select * from reservacompartilhada';
+    //     let queryPrivativa = 'select * from reservaprivativa';
+
+    //     promises.push(session.executeSql(queryCompartilhada));
+    //     promises.push(session.executeSql(queryPrivativa));
+
+    //     Promise.all(promises).then(function(result){
+    //         res.status(200).json(result);
+    //     }).catch(function(error){
+    //         res.status(400).send(error);
+    //     });
+    // });
+
+    .post(function (req, res) {
+
+        var novaReserva = {
+            idHospede: req.body.idHospede,
+            idQuarto: req.body.idQuarto,
+            estadoReserva: req.body.estadoReserva,
+            dataEntrada: req.body.dataEntrada,
+            dataSaida: req.body.dataSaida,
+            privativa: req.body.privativa,
+            quantidade: req.body.quantidade
+        }
+
+        // verificar disponibilidade da reserva antes de inserir?
+        reserva.Insert(novaReserva).then(function (result) {
+            res.status(200).json({ message: 'Reserva criada!' });
+        }).catch(function (error) {
+            res.status(400).send(error);
+        });
+    })
+    .get(function (req, res) {
+
+        let query = 'select * from reserva';
 
         session.executeSql(query).then(function(result){
             res.status(200).json(result);
