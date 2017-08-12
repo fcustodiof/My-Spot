@@ -1,21 +1,21 @@
 ##  My-Spot
 
-Descrição
+Descrição do projeto...
 
+#Install
 ---
-Install angular dependencies.
 
+Install angular dependencies.
 ```
-	 npm install http-server -g
+npm install http-server -g
 
 ```
 
 Install Application dependencies:
 
 Change directory to ```backend``` folder, then run
-
 ```
-    npm install
+npm install
 
 ```
 
@@ -23,18 +23,16 @@ Change directory to ```backend``` folder, then run
 ---
 
 Run the application by entering following command in your command prompt at ```fronted``` folder
-
 ```
-	http-server
+http-server
 ```
 
 #Run (Back)
 ---
 
 Run the application by entering following command in your command prompt at ```backend``` folder
-
 ```
-	node server.js
+node server.js
 ```
 
 
