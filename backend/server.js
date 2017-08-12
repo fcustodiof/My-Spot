@@ -141,22 +141,6 @@ router.route('/hospedes')
     });
 
 router.route('/reservas')
-    // .get(function (req, res) {
-
-    //     let promises = [];
-
-    //     let queryCompartilhada = 'select * from reservacompartilhada';
-    //     let queryPrivativa = 'select * from reservaprivativa';
-
-    //     promises.push(session.executeSql(queryCompartilhada));
-    //     promises.push(session.executeSql(queryPrivativa));
-
-    //     Promise.all(promises).then(function(result){
-    //         res.status(200).json(result);
-    //     }).catch(function(error){
-    //         res.status(400).send(error);
-    //     });
-    // });
 
     .post(function (req, res) {
 
@@ -169,11 +153,29 @@ router.route('/reservas')
             privativa: req.body.privativa,
             quantidade: req.body.quantidade
         }
-
-        // TODO - Verificar disponibilidade de reserva antes de inserir!
         
-        reserva.Insert(novaReserva).then(function (result) {
-            res.status(200).json({ message: 'Reserva criada!' });
+        // Verifica disponibilidade de reserva antes de inserir
+        consultaDisponbilidadeReserva(novaReserva.idQuarto, novaReserva.dataEntrada).then(function(result){
+
+            let disponibilidade = result;
+            let podeReservar = disponibilidade[0];
+
+            if (podeReservar){
+
+                // Parse do formato das datas para aceitação do SQL.
+                novaReserva.dataEntrada = novaReserva.dataEntrada.replace(/'/g, "");
+                novaReserva.dataSaida = novaReserva.dataSaida.replace(/'/g, "");
+
+                reserva.Insert(novaReserva).then(function (result) {
+                    res.status(200).json({ message: 'Reserva criada com sucesso!' });
+                }).catch(function (error) {
+                    res.status(400).send(error);
+                });
+
+            } else {
+                res.status(401).send(disponibilidade[1]);
+            }
+
         }).catch(function (error) {
             res.status(400).send(error);
         });
@@ -189,11 +191,9 @@ router.route('/reservas')
         });
     });
 
-router.route('/consultaDisp')
-    .get(function (req, res) {
+// Retorna [disponibilidade, mensagem]
+function consultaDisponbilidadeReserva(quarto, data){
 
-        let quarto = req.query.idquarto;
-        let data = req.query.data;
         let querys = [];
 
         // Consulta as reservas cadastradas no quarto naquele periodo.
@@ -221,7 +221,7 @@ router.route('/consultaDisp')
             })
         );
 
-        // Consulta as reservas cadastradas no quarto naquele periodo.
+        // Consulta a quantidade de camas reservadas no quarto naquele periodo.
         querys.push(
             session.executeSql('select quantidade from reserva where reserva.idQuarto = ' + quarto + ' AND ' + data 
             + 'BETWEEN reserva.dataEntrada AND reserva.dataSaida').then( function(result){
@@ -234,8 +234,7 @@ router.route('/consultaDisp')
             })
         );
 
-
-        Promise.all(querys).then(function(results){
+        return Promise.all(querys).then(function(results){
 
             let reservasNoQuartoNoPeriodo = results.shift();
             let vagasTotaisNoQuarto = results.shift();
@@ -247,7 +246,7 @@ router.route('/consultaDisp')
 
                 // Verifica se a reserva é privativa
                 if (reservasNoQuartoNoPeriodo[0].privativa === 1){
-                    res.status(200).json("Indisponível! Existe uma reserva privativa no quarto nesse período!");
+                    return [false, "Indisponível! Existe uma reserva privativa no quarto nesse período!"];
 
                 } else {
 
@@ -261,15 +260,29 @@ router.route('/consultaDisp')
                     let camasDisponiveis = vagasTotaisNoQuarto[0].vagaTotal - camasReservadas;
 
                     if (camasDisponiveis > 0)
-                        res.status(200).json(camasDisponiveis + " camas disponíveis nesse período!");
+                        return [true, camasDisponiveis + " camas disponíveis nesse período!"];
                     else
-                        res.status(200).json("Indisponível! Todas as camas estão reservadas nesse período!");
+                        return [false, "Indisponível! Todas as camas estão reservadas nesse período!"];
                 }
+
             } else {
 
-                 res.status(200).json("Disponível para reserva!");
+                return [true, "Disponível para reserva!"];
             }
 
+        }).catch(function(error){
+            res.status(400).send(error);
+        });
+}
+
+router.route('/consultaDisp')
+    .get(function (req, res) {
+
+        let quarto = req.query.idquarto;
+        let data = req.query.data;
+
+        consultaDisponbilidadeReserva(quarto, data).then(function(result){
+            res.status(200).send(result);
         }).catch(function(error){
             res.status(400).send(error);
         });

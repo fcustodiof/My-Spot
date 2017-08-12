@@ -5,15 +5,13 @@ Descrição do projeto...
 #Install
 ---
 
-Install angular dependencies.
-```
-npm install http-server -g
-
-```
-
 Install node dependencies.
 ```
 npm install -g nodemon
+
+```
+```
+npm install http-server -g
 
 ```
 
@@ -40,6 +38,15 @@ Run the application by entering following command in your command prompt at ```b
 ```
 nodemon server.js
 ```
+
+#Routes examples
+---
+
+Consultar disponibilidade:
+```
+http://localhost:8000/api/consultaDisp?idquarto=1&data='2017-12-10'
+```
+
 
 
 # OBSERVAÇÕES: 
