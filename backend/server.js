@@ -59,19 +59,20 @@ router.route('/quartos/:idQuarto')
             if(result.length > 0){
                 res.status(200).json(result);
             }else{
-                res.status(404).send("Quarto não encontrado!");
+                res.status(404).json({ message: 'Quarto não encontrado!' });
             }
         }).catch(function(error){
             res.status(400).send(error);
         });
     })
     .put(function (req, res) {
+
         var sql = 'UPDATE quarto SET tipoQuarto = \''+req.body.tipoQuarto+
         '\', sexoQuarto = \''+req.body.sexoQuarto+
         '\', valorQuarto = '+req.body.valorQuarto+
         ', vagaTotal = '+req.body.vagaTotal+
         ' WHERE idQuarto = '+req.params.idQuarto;
-        console.log(sql);
+
         var query = session.executeSql(sql);
         
         query.then(function(result) {
@@ -79,20 +80,6 @@ router.route('/quartos/:idQuarto')
         }).catch(function(error) {
             res.status(400).send(error);
         });
-
-        // var newQuarto = {
-        //     idQuarto: req.params.idQuarto,
-        //     tipoQuarto: req.body.tipoQuarto,
-        //     sexoQuarto: req.body.sexoQuarto,
-        //     valorQuarto: req.body.valorQuarto,
-        //     vagaTotal: req.body.vagaTotal
-        // }
-
-        // quarto.Insert(newQuarto).then(function (result) {
-        //     res.status(200).json({ message: 'Quarto criado!' });
-        // }).catch(function (error) {
-        //     res.status(400).send(error);
-        // });
     })
     .delete(function(req, res) {
        var sql = 'UPDATE quarto SET desativado = TRUE WHERE idQuarto = '+req.params.idQuarto;
@@ -122,7 +109,7 @@ router.route('/hospedes')
         }).catch(function (error) {
 
             if (error.sqlState === "23000"){
-                res.status(400).send("CPF já cadastrado!");
+                res.status(400).json({ message: 'CPF já cadastrado!' });
 
             } else {
                 res.status(400).send(error);
@@ -138,6 +125,51 @@ router.route('/hospedes')
         }).catch(function(error){
             res.status(400).send(error);
         });
+    });
+
+router.route('/hospedes/:idHospede')    
+    .get(function (req, res) {
+
+        var query = session.query(hospede).where(
+            hospede.idHospede.Equal(req.params.idHospede)
+        );
+
+        query.then(function(result){
+
+            if(result.length > 0){
+
+                res.status(200).json(result);
+
+            }else{
+
+                res.status(404).json({ message: 'Hospede não encontrado!' });
+            }
+
+        }).catch(function(error){
+            res.status(400).send(error);
+        });
+
+    })
+    .put(function (req, res) {
+
+        var sql = 'UPDATE hospede SET dataNascimento = \''+ req.body.dataNascimento+
+        '\', cpf = '+req.body.cpf+
+        ', rg = \''+req.body.rg+
+        '\', nome = \''+req.body.nome+
+        '\', email = \''+req.body.email+
+        '\', telefone = '+req.body.telefone+
+        ' WHERE idHospede = '+req.params.idHospede;
+
+        var query = session.executeSql(sql);
+        
+        query.then(function(result) {
+            res.status(200).json({ message: 'Hospede atualizado!' });
+        }).catch(function(error) {
+            res.status(400).send(error);
+        });
+    })
+    .delete(function(req, res) {
+       // TO DO
     });
 
 router.route('/reservas')
@@ -190,6 +222,53 @@ router.route('/reservas')
             res.status(400).send(error);
         });
     });
+
+router.route('/reservas/:idReserva')    
+    .get(function (req, res) {
+
+        var query = session.query(reserva).where(
+            reserva.idReserva.Equal(req.params.idReserva)
+        );
+
+        query.then(function(result){
+
+            if(result.length > 0){
+
+                res.status(200).json(result);
+
+            }else{
+
+                res.status(404).json({ message: 'Reserva não encontrada!' });
+            }
+
+        }).catch(function(error){
+            res.status(400).send(error);
+        });
+
+    })
+    .put(function (req, res) {
+
+        var sql = 'UPDATE reserva SET idHospede = '+ req.body.idHospede+
+        ', idQuarto = '+req.body.idQuarto+
+        ', estadoReserva = \''+req.body.estadoReserva+
+        '\', dataEntrada = \''+req.body.dataEntrada+
+        '\', dataSaida = \''+req.body.dataSaida+
+        '\', privativa = \''+req.body.privativa+
+        '\', quantidade = '+req.body.quantidade+
+        ' WHERE idReserva = '+req.params.idReserva;
+
+        var query = session.executeSql(sql);
+        
+        query.then(function(result) {
+            res.status(200).json({ message: 'Reserva atualizada!' });
+        }).catch(function(error) {
+            res.status(400).send(error);
+        });
+    })
+    .delete(function(req, res) {
+       // TO DO
+    });
+
 
 // Retorna [disponibilidade, mensagem]
 function consultaDisponbilidadeReserva(quarto, data){
@@ -286,6 +365,6 @@ router.route('/consultaDisp')
         }).catch(function(error){
             res.status(400).send(error);
         });
-
     });
+
     app.use('/api', router);

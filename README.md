@@ -53,4 +53,3 @@ http://localhost:8000/api/consultaDisp?idquarto=1&data='2017-12-10'
 - Melhorar mensagens de commit
 - Submeter documento de requisitos no diretório apropriado
 - Descrever neste documento a estratégia de controle de versão que será usada (Ex.: padrão de mensagens de commit que foi combinado em sala de aula)
-
