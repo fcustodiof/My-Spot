@@ -11,6 +11,12 @@ npm install http-server -g
 
 ```
 
+Install node dependencies.
+```
+npm install -g nodemon
+
+```
+
 Install Application dependencies:
 
 Change directory to ```backend``` folder, then run
@@ -32,7 +38,7 @@ http-server
 
 Run the application by entering following command in your command prompt at ```backend``` folder
 ```
-node server.js
+nodemon server.js
 ```
 
 
