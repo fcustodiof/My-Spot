@@ -123,6 +123,7 @@ insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('20
 
 insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-30', '2017-12-10', 0, 2);
 
+insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-10', '2017-11-15', 1, 2);
 
 #insert into reservacompartilhada (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, qntCamas) values (1, 1, FALSE, '2017-11-30', '2017-12-10', 3);
 
