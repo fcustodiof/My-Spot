@@ -65,6 +65,36 @@ CREATE TABLE ghlavras_myspot.hospede (
       ON DELETE CASCADE
       ON UPDATE CASCADE);
 
+# Criando tabela de checkin
+# Se der tempo adicionar o campo de cpf
+# e verificar se o cpf cedido é o mesmo do
+# hospede que fez a reserva.
+CREATE TABLE ghlavras_myspot.checkin (
+  idCheckin INT NOT NULL AUTO_INCREMENT,
+  idReserva INT NOT NULL,
+  data DATE NOT NULL,
+  PRIMARY KEY (idCheckin),
+   CONSTRAINT fk_checkin_reserva
+      FOREIGN KEY (idReserva)
+      REFERENCES ghlavras_myspot.reserva (idReserva)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE);
+
+# Criando tabela de checkout
+# Se der tempo adicionar o campo de cpf
+# e verificar se o cpf cedido é o mesmo do
+# hospede que fez a reserva.
+CREATE TABLE ghlavras_myspot.checkout (
+  idCheckout INT NOT NULL AUTO_INCREMENT,
+  idReserva INT NOT NULL,
+  data DATE NOT NULL,
+  PRIMARY KEY (idCheckout),
+   CONSTRAINT fk_checkout_reserva
+      FOREIGN KEY (idReserva)
+      REFERENCES ghlavras_myspot.reserva (idReserva)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE);
+
 insert into quarto (tipoQuarto, sexoQuarto, valorQuarto, vagaTotal) values ('M','M',5, 4);
 insert into quarto (tipoQuarto, sexoQuarto, valorQuarto, vagaTotal) values ('M','M', 200, 10);
 insert into quarto (tipoQuarto, sexoQuarto, valorQuarto, vagaTotal) values ('M','M',600, 3);
@@ -80,9 +110,15 @@ insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('20
 insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-30', '2017-12-10', 0, 2);
 insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-10', '2017-11-15', 1, 2);
 
+insert into checkin (idReserva, data) values (1, '2017-11-10');
+
+insert into checkout (idReserva, data) values (1, '2017-11-15');
+
 # --- !Downs
-DROP TABLE ghlavras_myspot.cama;
+DROP TABLE ghlavras_myspot.checkin;
+DROP TABLE ghlavras_myspot.checkout;
 DROP TABLE ghlavras_myspot.reserva;
+DROP TABLE ghlavras_myspot.cama;
 DROP TABLE ghlavras_myspot.quarto;
 DROP TABLE ghlavras_myspot.hospede;
 
