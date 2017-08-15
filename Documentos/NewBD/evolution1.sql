@@ -43,12 +43,14 @@ CREATE TABLE ghlavras_myspot.hospede (
   # Criando tabela de reservas.
   # A quantidade representa quantidade de camas caso a reserva seja privativa
   # ou quantidade de pessoas caso a reserva seja compartilhada.
-  # O estado da reserva é modificado pra TRUE quando o hospede fizer check-in.
+  # O estado da reserva é modificado pra TRUE quando o hospede fizer check-in
+  # e FALSE para quando for feito o check-out
+
   CREATE TABLE ghlavras_myspot.reserva(
     idReserva INT NOT NULL AUTO_INCREMENT,
     idHospede INT NOT NULL,
     idQuarto INT NOT NULL,
-    estadoReserva BOOLEAN DEFAULT FALSE,
+    estadoReserva BOOLEAN DEFAULT NULL,
     dataEntrada DATE NOT NULL,
     dataSaida DATE NOT NULL,
     privativa BOOLEAN DEFAULT FALSE,
@@ -107,8 +109,8 @@ insert into cama (idQuarto, situacaoCama) values (3,'O');
 insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('2008-05-30', '551615', '441kofok', 'Breno', 'brn753@gmail.com', 5641251);
 insert into hospede (dataNascimento, cpf, rg, nome, email, telefone) values ('2005-05-30', '66666', '44451kofok', 'Breno', 'brn753@gmail.com', 5641251);
 
-insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-30', '2017-12-10', 0, 2);
-insert into reserva (idHospede, idQuarto, estadoReserva, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, 0, '2017-11-10', '2017-11-15', 1, 2);
+insert into reserva (idHospede, idQuarto, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, '2017-11-30', '2017-12-10', 0, 2);
+insert into reserva (idHospede, idQuarto, dataEntrada, dataSaida, privativa, quantidade) values (1, 1, '2017-11-10', '2017-11-15', 1, 2);
 
 insert into checkin (idReserva, data) values (1, '2017-11-10');
 
