@@ -5,6 +5,7 @@ var quarto = session.tableMap('quarto')
     .columnMap('tipoQuarto', 'tipoQuarto')
     .columnMap('sexoQuarto', 'sexoQuarto')
     .columnMap('valorQuarto', 'valorQuarto')
-    .columnMap('vagaTotal', 'vagaTotal');
+    .columnMap('vagaTotal', 'vagaTotal')
+    .columnMap('desativado', 'desativado');
 
 module.exports = quarto;
