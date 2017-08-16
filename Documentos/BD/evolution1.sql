@@ -15,19 +15,6 @@ CREATE TABLE ghlavras_myspot.quarto (
   desativado BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (idQuarto));
 
-# Criando tabela de camas
-CREATE TABLE ghlavras_myspot.cama (
-  idCama INT NOT NULL AUTO_INCREMENT,
-  idQuarto INT NOT NULL,
-  situacaoCama VARCHAR(1) NOT NULL,
-  PRIMARY KEY (idCama),
-  INDEX fk_cama_idx (idQuarto ASC),
-  CONSTRAINT fk_cama_idQuarto
-    FOREIGN KEY (idQuarto)
-    REFERENCES ghlavras_myspot.quarto (idQuarto)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
-
 # Criando tabela de hospedes
 CREATE TABLE ghlavras_myspot.hospede (
   idHospede INT NOT NULL AUTO_INCREMENT,

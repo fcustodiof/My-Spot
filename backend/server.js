@@ -181,7 +181,6 @@ router.route('/reservas')
         var novaReserva = {
             idHospede: req.body.idHospede,
             idQuarto: req.body.idQuarto,
-            estadoReserva: req.body.estadoReserva,
             dataEntrada: req.body.dataEntrada,
             dataSaida: req.body.dataSaida,
             privativa: req.body.privativa,

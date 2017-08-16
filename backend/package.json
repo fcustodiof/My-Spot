@@ -1,10 +1,10 @@
 {
-  "name": "laslenhasWS",
+  "name": "MySpot",
   "version": "1.0.0",
   "description": "",
-  "main": "mainFile.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
     "express": "^4.15.3",
     "formidable": "^1.1.1",
     "js-hibernate": "^1.0.14",
+    "mocha": "^3.5.0",
     "underscore": "^1.8.3"
   }
 }
