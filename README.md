@@ -44,7 +44,7 @@ nodemon server.js
 
 Consultar disponibilidade:
 ```
-http://localhost:8000/api/consultaDisp?idquarto=1&data='2017-12-10'
+http://localhost:8000/consultaDisp?idquarto=1&data='2017-11-12'
 ```
 
 
