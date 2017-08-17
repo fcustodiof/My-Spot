@@ -1,6 +1,17 @@
 angular.module('reservarController',[])
 
 .controller('reservarController', function($scope, $http, md5, requestService){
-
-  $scope.select = [0,1,2,3,4];
+  $scope.user = {
+    nome:'',
+    sobrenome:'',
+    cpf: '',
+    rg: '',
+    pais: '',
+    estado: '',
+    cidade: '',
+    bairro: '',
+    rua: '',
+    numero:'',
+    complemento: ''
+  }
 })

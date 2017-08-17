@@ -1,12 +1,17 @@
 <div class="">
-  <div class="row">
-    <div class="col s12 m3">
-      <div class="card-panel ">
-        <h4>Reserva</h4>
-        <div class="row">
-          <div class="col s12">
-            <label for="inputCreated">Entrada</label>
-            <input input-date type="text" name="created" id="inputCreated" ng-model="entrada"
+  <form name="reservaform">
+    <div class="row">
+      <div class="col s12 m3">
+        <div class="card-panel ">
+          <h4>Reserva</h4>
+          <div class="row">
+            <div class="col s12">
+              <label for="inputCreated">Entrada</label>
+              <input input-date required
+                type="text"
+                name="created"
+                id="inputCreated"
+                ng-model="currentTime"
                 container=""
                 format="dd/mm/yyyy"
                 months-full="{{ month }}"
@@ -14,15 +19,28 @@
                 weekdays-full="{{ weekdaysFull }}"
                 weekdays-short="{{ weekdaysShort }}"
                 weekdays-letter="{{ weekdaysLetter }}"
+                disable="disable"
+                min="{{ minDate }}"
+                max="{{ maxDate }}"
                 today="today"
                 first-day="1"
                 clear="clear"
                 close="close"
-                select-years="100"/>
-          </div>
-          <div class="col s12">
-            <label for="inputCreated">Saída</label>
-            <input input-date type="text" name="created" id="inputCreated" ng-model="saida"
+                select-years="15"
+                on-start="onStart()"
+                on-render="onRender()"
+                on-open="onOpen()"
+                on-close="onClose()"
+                on-set="onSet()"
+                on-stop="onStop()" />
+            </div>
+            <div class="col s12">
+              <label for="inputCreated">Saída</label>
+              <input input-date required
+                type="text"
+                name="created"
+                id="inputCreated"
+                ng-model="currentTime"
                 container=""
                 format="dd/mm/yyyy"
                 months-full="{{ month }}"
@@ -30,49 +48,51 @@
                 weekdays-full="{{ weekdaysFull }}"
                 weekdays-short="{{ weekdaysShort }}"
                 weekdays-letter="{{ weekdaysLetter }}"
+                disable="disable"
+                min="{{ minDateFim }}"
+                max="{{ maxDate }}"
                 today="today"
                 first-day="1"
                 clear="clear"
                 close="close"
-                select-years="100"/>
-          </div>
-          <div class="switch col s12">
-            <label>
-              Quarto Privativo
-              <input type="checkbox" ng-init="boolPrivativo = false" ng-model="boolPrivativo">
-              <span class="lever"></span>
-            </label>
-          </div>
-          <div ng-show="boolPrivativo">
-            <div input-field class="col s12">
-              <input type="number" id="qnt_cama">
-              <label for="qnt_cama">Quantidade de pessoas</label>
+                select-years="15"
+                on-start="onStart()"
+                on-render="onRender()"
+                on-open="onOpen()"
+                on-close="onClose()"
+                on-set="onSet()"
+                on-stop="onStop()" />
             </div>
-          </div>
-          <div ng-show="!boolPrivativo">
-            <div input-field class="col s12">
-              <input type="number" id="qnt_cama">
-              <label for="qnt_cama">Quantidade de Camas</label>
+            <div class="switch col s12">
+              <label>
+                Quarto Privativo
+                <input type="checkbox" ng-init="boolPrivativo = false" ng-model="boolPrivativo">
+                <span class="lever"></span>
+              </label>
             </div>
-            <div input-field class="col s12" ng-show="!boolPrivativo">
-              <select class="" ng-model="select[0]" id="qnt_masc" material-select watch>
-                  <option ng-repeat="value in select">{{value}}</option>
-              </select>
-              <label for="qnt_masc">Camas masculinos</label>
+            <div ng-if="boolPrivativo">
+              <div input-field class="col s12">
+                <input type="number" ng-init="reserva.qnt_quartos = ''" id="qnt_quartos" ng-model="reserva.qnt_quartos" required>
+                <label for="qnt_quartos">Quantidade de quartos</label>
+              </div>
             </div>
-            <div input-field class="col s12" ng-show="!boolPrivativo">
-              <select class="" ng-model="select[0]" id="qnt_masc" material-select watch>
-                  <option ng-repeat="value in select">{{value}}</option>
-              </select>
-              <label for="qnt_masc">Camas Femininos</label>
+            <div ng-if="!boolPrivativo">
+              <div input-field class="col s12">
+                <input type="number" id="qnt_cama_masc" ng-init="reserva.vagaMasc = ''" ng-model="reserva.vagaMasc" required>
+                <label for="qnt_cama_masc">Vagas masculinas</label>
+              </div>
+              <div input-field class="col s12">
+                <input type="number" id="qnt_cama_fem" ng-init="reserva.vagaFem = ''" ng-model="reserva.vagaFem" required>
+                <label for="qnt_cama_fem">Vagas femininas</label>
+              </div>
             </div>
-          </div>
-          <div class="col s12 center-align">
-            <p>Total: R$ 0,00</p>
-            <a class="btn indigo accent-4" style="margin-top:8px" href="/reservar">Reservar</a>
+            <div class="col s12 center-align">
+              <p>Total: R$ 0,00</p>
+              <a class="btn indigo accent-4" style="margin-top:8px" href="/reservar" ng-class="{'disabled':reservaform.$invalid, ' ':reservaform.$valid}">Reservar</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
